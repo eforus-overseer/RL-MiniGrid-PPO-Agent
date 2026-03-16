@@ -1,0 +1,25 @@
+D3QN:
+RL_Final_Project_MiniGrid_D3QN_[ID REMOVED]_[ID REMOVED] - https://colab.research.google.com/drive/1m7cMuRKdBdjyfbn0mUKJNPfCjY97uUxQ?usp=sharing
+RL_Final_Project_MiniGrid_D3QN_[ID REMOVED]_[ID REMOVED]_Evaluation_Notebook - https://colab.research.google.com/drive/1I1i_TQXymzBkZ0H4LUANdnT_FOZMC0j6?usp=sharing
+
+Using the Evaluation Notebook:
+
+1. upload the following files in content folder:
+	* train_2SmallRooms_60000.pkl
+	* train_6SmallRooms_80000.pkl
+	* train_6Rooms_90000.pkl
+2. run the notebook
+
+
+PPO:
+RL_Final_Project_MiniGrid_PPO_Agent_[ID REMOVED]_ [ID REMOVED] - https://colab.research.google.com/drive/1rNRP1w-F70boZwTJLeC5jnsFUz-UBtYO?usp=sharing
+EVALUATION_NOTEBOOK_PPO_[ID REMOVED]_ [ID REMOVED] - https://colab.research.google.com/drive/1xaXOvx-seGtIECX2R92oCwK5Az7tS7sO?usp=sharing
+
+Using the Evaluation Notebook:
+
+# # Define paths to model weights
+# model_paths = {
+#     "small": "/path/to/ppo_agent_small_room.pt",  # Replace with actual path
+#     "medium": "/path/to/ppo_agent_medium_room.pt",  # Replace with actual path
+#     "large": "/path/to/ppo_agent_large_room.pt"  # Replace with actual path
+# }
