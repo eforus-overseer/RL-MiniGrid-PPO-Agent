@@ -158,15 +158,17 @@ Both algorithms needed carefully designed reward signals to learn effectively:
 
 ---
 
-## Notebooks (Google Colab)
+## Notebooks
+
+All notebooks are in the [`notebooks/`](notebooks/) directory and also available on Google Colab:
 
 ### D3QN
-- [Training Notebook](https://colab.research.google.com/drive/1m7cMuRKdBdjyfbn0mUKJNPfCjY97uUxQ?usp=sharing)
-- [Evaluation Notebook](https://colab.research.google.com/drive/1I1i_TQXymzBkZ0H4LUANdnT_FOZMC0j6?usp=sharing)
+- [Training Notebook](notebooks/d3qn_training.ipynb) (69 cells) — full training pipeline with curriculum learning | [Open in Colab](https://colab.research.google.com/drive/1m7cMuRKdBdjyfbn0mUKJNPfCjY97uUxQ?usp=sharing)
+- [Evaluation Notebook](notebooks/d3qn_evaluation.ipynb) — load trained models and evaluate | [Open in Colab](https://colab.research.google.com/drive/1I1i_TQXymzBkZ0H4LUANdnT_FOZMC0j6?usp=sharing)
 
 ### PPO
-- [Training Notebook](https://colab.research.google.com/drive/1rNRP1w-F70boZwTJLeC5jnsFUz-UBtYO?usp=sharing)
-- [Evaluation Notebook](https://colab.research.google.com/drive/1xaXOvx-seGtIECX2R92oCwK5Az7tS7sO?usp=sharing)
+- Training Notebook — [Open in Colab](https://colab.research.google.com/drive/1rNRP1w-F70boZwTJLeC5jnsFUz-UBtYO?usp=sharing)
+- [Evaluation Notebook](notebooks/ppo_evaluation.ipynb) — load trained models and evaluate | [Open in Colab](https://colab.research.google.com/drive/1xaXOvx-seGtIECX2R92oCwK5Az7tS7sO?usp=sharing)
 
 ### Running the D3QN Evaluation
 
@@ -193,16 +195,20 @@ Both algorithms needed carefully designed reward signals to learn effectively:
 ## Repository Structure
 
 ```
-├── assets/                     # GIFs for README
-│   ├── small_env.gif           # PPO solving 2-room env
-│   ├── medium_env.gif          # PPO solving 4-room env
-│   ├── large_env.gif           # PPO solving 6-room env
-│   ├── d3qn_small.gif          # D3QN solving 2-room env
-│   ├── d3qn_medium.gif         # D3QN solving 4-room env
-│   ├── d3qn_large.gif          # D3QN solving 6-room env
-│   └── d3qn_large_fail.gif     # D3QN failure case in 6-room
-├── report.docx                 # Full project report
-├── RL_Final_Notebooks.txt      # Colab notebook links
+├── notebooks/
+│   ├── d3qn_training.ipynb         # D3QN full training pipeline (69 cells)
+│   ├── d3qn_evaluation.ipynb       # D3QN model evaluation
+│   └── ppo_evaluation.ipynb        # PPO model evaluation
+├── assets/                         # GIFs for README
+│   ├── small_env.gif               # PPO solving 2-room env
+│   ├── medium_env.gif              # PPO solving 4-room env
+│   ├── large_env.gif               # PPO solving 6-room env
+│   ├── d3qn_small.gif              # D3QN solving 2-room env
+│   ├── d3qn_medium.gif             # D3QN solving 4-room env
+│   ├── d3qn_large.gif              # D3QN solving 6-room env
+│   └── d3qn_large_fail.gif         # D3QN failure case in 6-room
+├── report.docx                     # Full project report
+├── RL_Final_Notebooks.txt          # Colab notebook links
 └── README.md
 ```
 
