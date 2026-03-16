@@ -5,7 +5,7 @@
 
 Solving the [MiniGrid MultiRoom](https://minigrid.farama.org/environments/minigrid/MultiRoomEnv/) navigation task across 3 environments of increasing complexity using **Proximal Policy Optimization (PPO)** and **Dueling Double DQN (D3QN)** with curriculum learning.
 
-**Authors:** eforus-overseer & Adi Zur
+**Authors:** [eforus-overseer](https://github.com/eforus-overseer-Pecani) & Adi Zur
 
 ---
 
@@ -65,6 +65,11 @@ The [MiniGrid MultiRoom](https://minigrid.farama.org/environments/minigrid/Multi
 - **Sparse rewards** — the default environment only rewards reaching the goal, nothing else
 - **Increasing complexity** — from 2 small rooms to 6 large rooms with long corridors
 
+<p align="center">
+  <img src="figures/d3qn_env_and_observation.png" width="700" alt="Environment full state vs agent's partial observation">
+  <br><em>Left: full environment state. Right: what the agent actually sees (7x7 partial observation).</em>
+</p>
+
 We solved three environments with increasing difficulty:
 
 | Environment | Rooms | Grid Size | Complexity |
@@ -118,6 +123,11 @@ Input (1, 14, 14) Green channel only
 - Experience replay buffer (10K transitions)
 - Target network updates every 1K-10K steps
 
+<p align="center">
+  <img src="figures/d3qn_epsilon_decay_rates.png" width="600" alt="Epsilon Decay Rates">
+  <br><em>Epsilon decay comparison — slower decay (0.99995) maintains exploration longer, critical for multi-room navigation.</em>
+</p>
+
 ---
 
 ## Results
@@ -140,6 +150,69 @@ Input (1, 14, 14) Green channel only
 - **D3QN finds shorter paths** in smaller environments (7.3 vs 14.5 steps)
 - **PPO scales better** to the hardest environment (99% vs 90% success in 6-room)
 - Both algorithms required **custom reward shaping** — default sparse rewards were insufficient
+
+### PPO Evaluation Summary
+
+<p align="center">
+  <img src="figures/ppo_evaluation_summary.png" width="800" alt="PPO Evaluation Summary">
+  <br><em>PPO evaluation across all 3 environments: success rate, average episode length, and average reward.</em>
+</p>
+
+### D3QN Training Curves
+
+**Small Environment (2 rooms, 60K episodes):**
+
+<table>
+  <tr>
+    <td align="center"><img src="figures/d3qn_small_rewards.png" width="400" alt="D3QN Small Rewards"></td>
+    <td align="center"><img src="figures/d3qn_small_steps.png" width="400" alt="D3QN Small Steps"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Rewards over time</em></td>
+    <td align="center"><em>Steps per episode (decreasing = learning)</em></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="figures/d3qn_small_success_rate.png" width="500" alt="D3QN Small Success Rate">
+  <br><em>Cumulative success rate — reaches ~85% over 60K episodes</em>
+</p>
+
+**Medium Environment (4 rooms, 80K episodes):**
+
+<table>
+  <tr>
+    <td align="center"><img src="figures/d3qn_medium_rewards.png" width="400" alt="D3QN Medium Rewards"></td>
+    <td align="center"><img src="figures/d3qn_medium_steps.png" width="400" alt="D3QN Medium Steps"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Rewards over time</em></td>
+    <td align="center"><em>Steps per episode</em></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="figures/d3qn_medium_success_rate.png" width="500" alt="D3QN Medium Success Rate">
+  <br><em>Cumulative success rate — slower learning, reaches ~55% over 80K episodes</em>
+</p>
+
+**Large Environment (6 rooms, 90K episodes):**
+
+<table>
+  <tr>
+    <td align="center"><img src="figures/d3qn_large_rewards.png" width="400" alt="D3QN Large Rewards"></td>
+    <td align="center"><img src="figures/d3qn_large_steps.png" width="400" alt="D3QN Large Steps"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Rewards over time — clear upward trend</em></td>
+    <td align="center"><em>Steps per episode — dramatic drop after ~30K</em></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="figures/d3qn_large_success_rate.png" width="500" alt="D3QN Large Success Rate">
+  <br><em>Cumulative success rate — doesn't start succeeding until ~35K episodes</em>
+</p>
 
 ### Reward Shaping
 
@@ -167,7 +240,7 @@ All notebooks are in the [`notebooks/`](notebooks/) directory and also available
 - [Evaluation Notebook](notebooks/d3qn_evaluation.ipynb) — load trained models and evaluate | [Open in Colab](https://colab.research.google.com/drive/1I1i_TQXymzBkZ0H4LUANdnT_FOZMC0j6?usp=sharing)
 
 ### PPO
-- Training Notebook — [Open in Colab](https://colab.research.google.com/drive/1rNRP1w-F70boZwTJLeC5jnsFUz-UBtYO?usp=sharing)
+- [Training Notebook](notebooks/ppo_training.ipynb) (87 cells) — full PPO pipeline with curriculum learning | [Open in Colab](https://colab.research.google.com/drive/1rNRP1w-F70boZwTJLeC5jnsFUz-UBtYO?usp=sharing)
 - [Evaluation Notebook](notebooks/ppo_evaluation.ipynb) — load trained models and evaluate | [Open in Colab](https://colab.research.google.com/drive/1xaXOvx-seGtIECX2R92oCwK5Az7tS7sO?usp=sharing)
 
 ### Running the D3QN Evaluation
@@ -198,7 +271,15 @@ All notebooks are in the [`notebooks/`](notebooks/) directory and also available
 ├── notebooks/
 │   ├── d3qn_training.ipynb         # D3QN full training pipeline (69 cells)
 │   ├── d3qn_evaluation.ipynb       # D3QN model evaluation
+│   ├── ppo_training.ipynb          # PPO full training pipeline (87 cells)
 │   └── ppo_evaluation.ipynb        # PPO model evaluation
+├── figures/                        # Training curves and analysis plots
+│   ├── d3qn_*_rewards.png          # Reward curves per environment
+│   ├── d3qn_*_steps.png            # Steps per episode per environment
+│   ├── d3qn_*_success_rate.png     # Cumulative success rate per environment
+│   ├── d3qn_epsilon_decay_rates.png
+│   ├── ppo_evaluation_summary.png  # PPO eval across all environments
+│   └── ...                         # Environment visualizations, action distributions
 ├── assets/                         # GIFs for README
 │   ├── small_env.gif               # PPO solving 2-room env
 │   ├── medium_env.gif              # PPO solving 4-room env
@@ -207,7 +288,7 @@ All notebooks are in the [`notebooks/`](notebooks/) directory and also available
 │   ├── d3qn_medium.gif             # D3QN solving 4-room env
 │   ├── d3qn_large.gif              # D3QN solving 6-room env
 │   └── d3qn_large_fail.gif         # D3QN failure case in 6-room
-├── report.docx                     # Full project report
+├── report.pdf                      # Full project report
 ├── RL_Final_Notebooks.txt          # Colab notebook links
 └── README.md
 ```
