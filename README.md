@@ -304,3 +304,11 @@ All notebooks are in the [`notebooks/`](notebooks/) directory and also available
 ## License
 
 Academic project — Reichman University, 2025.
+
+---
+
+<!-- demo-lab:start -->
+## Explore this project
+
+[Project page & walkthrough](https://eforus-overseer.github.io/demo-lab/projects/rl-minigrid-ppo-agent/) — Watch original agent recordings and explore the method and source artifacts.
+<!-- demo-lab:end -->
