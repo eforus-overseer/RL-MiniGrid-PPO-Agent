@@ -312,3 +312,11 @@ Academic project — Reichman University, 2025.
 
 [Project page & walkthrough](https://eforus-overseer.github.io/demo-lab/projects/rl-minigrid-ppo-agent/) — Watch original agent recordings and explore the method and source artifacts.
 <!-- demo-lab:end -->
+
+
+<!-- codex-pixel-art -->
+## Pixel art
+
+![Pixel art for RL-MiniGrid-PPO-Agent](assets/pixel-art.svg)
+
+A small visual signature for this repository.
